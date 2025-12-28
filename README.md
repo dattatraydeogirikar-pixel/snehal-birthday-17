@@ -20,6 +20,8 @@ body {
   border-radius:20px;
   padding:25px;
   box-shadow:0 8px 25px rgba(0,0,0,0.15);
+  position: relative;
+  overflow: hidden;
 }
 h1 {
   color:#ff4d88;
@@ -28,25 +30,37 @@ h1 {
 p {
   margin:12px 0;
   line-height:1.6;
-  opacity:0;
-  transform:translateY(15px);
-  animation:fadeIn 1s forwards;
 }
 strong.nick { color:#ff3366; font-weight:600; }
-@keyframes fadeIn { to { opacity:1; transform:translateY(0); } }
-.section { display:none; margin-top:20px; text-align:left; }
-.questions { margin-top:20px; text-align:left; }
+
+.section {
+  display:none;
+  opacity:0;
+  transition: opacity 1s ease;
+  position: absolute;
+  top:0;
+  left:0;
+  width:100%;
+  padding:20px;
+  box-sizing:border-box;
+}
+
+.section.active {
+  display:block;
+  opacity:1;
+}
+
 .questions label { display:block; margin-bottom:8px; }
-button { padding:8px 16px; border-radius:8px; border:none; background-color:#ff4d88; color:white; cursor:pointer; margin-top:10px; }
-.final-message { display:none; margin-top:20px; background:#fff0f6; padding:20px; border-radius:15px; text-align:center; }
+button { padding:10px 18px; border-radius:8px; border:none; background-color:#ff4d88; color:white; cursor:pointer; margin-top:15px; font-size:16px; }
+.final-message { display:none; margin-top:20px; background:#fff0f6; padding:20px; border-radius:15px; text-align:center; position:relative; }
 </style>
 </head>
 <body>
 
 <div class="container">
 
-<!-- First page beautiful message -->
-<div class="section" id="introSection" style="display:block;">
+<!-- Intro Section -->
+<div class="section active" id="introSection">
 <h1>Happy 17th Birthday, Snehal! 💖</h1>
 <p>Dear Snehal,</p>
 <p>Today is a very special day — the day a beautiful soul like you turns 17! May this year bring you endless laughter, joy, love, and unforgettable memories. You are my sakhi, my rasmalai, my ladoo, my dudu, my raanisaheb, and the most precious person in my life. 💖</p>
@@ -54,7 +68,7 @@ button { padding:8px 16px; border-radius:8px; border:none; background-color:#ff4
 <button onclick="showLetter()">Read Letter 💌</button>
 </div>
 
-<!-- Letter section -->
+<!-- Letter Section -->
 <div class="section" id="letterSection">
 <p><strong>Snehal,</strong></p>
 <p>Today is not just any day… it’s the day you turn 17, the day the world was blessed with <em>you</em>. I feel so lucky that I’ve known you since 6th standard — all the laughter, all the small moments, all the memories we’ve created together… I wouldn’t trade any of them for anything.</p>
@@ -67,12 +81,11 @@ button { padding:8px 16px; border-radius:8px; border:none; background-color:#ff4
 <p>Snehal, 17 is a beautiful age. It’s a time to dream bigger, laugh louder, love deeper, and embrace every part of yourself.</p>
 <p>Today, I want to remind you to <strong>take care of yourself</strong>, to cherish your happiness, and to know that I, <strong>Aashay</strong>, am always here. Every day with you is a gift, and I can’t wait for all the memories <strong>uss</strong> have yet to create.</p>
 <p>Happy 17th Birthday, my love. 💖</p>
-<p>With all my heart,<br><strong>Aashay</strong></p>
 <button onclick="showQuestions()">Answer Questions 🎉</button>
 </div>
 
-<!-- Questions section -->
-<div class="section" id="questionsSection" class="questions">
+<!-- Questions Section -->
+<div class="section" id="questionsSection">
 <p>Answer these questions before the final birthday message:</p>
 
 <p>1. What do you wish for your 17th year?</p>
@@ -93,7 +106,7 @@ button { padding:8px 16px; border-radius:8px; border:none; background-color:#ff4
 <button onclick="showFinal()">Submit Answers</button>
 </div>
 
-<!-- Final message -->
+<!-- Final Message -->
 <div class="final-message" id="finalMessage">
 <h2>🎉 Happy 17th Birthday, Snehal 💖</h2>
 <p>May this year be gentle, joyful, and full of love. You deserve the world and more.</p>
@@ -102,14 +115,24 @@ button { padding:8px 16px; border-radius:8px; border:none; background-color:#ff4
 </div>
 
 <script>
+function fadeOut(element){
+  element.style.opacity = 0;
+  setTimeout(()=>{ element.style.display='none'; }, 500);
+}
+
+function fadeIn(element){
+  element.style.display='block';
+  setTimeout(()=>{ element.style.opacity = 1; }, 50);
+}
+
 function showLetter(){
-  document.getElementById('introSection').style.display='none';
-  document.getElementById('letterSection').style.display='block';
+  fadeOut(document.getElementById('introSection'));
+  fadeIn(document.getElementById('letterSection'));
 }
 
 function showQuestions(){
-  document.getElementById('letterSection').style.display='none';
-  document.getElementById('questionsSection').style.display='block';
+  fadeOut(document.getElementById('letterSection'));
+  fadeIn(document.getElementById('questionsSection'));
 }
 
 function showFinal(){
@@ -122,8 +145,8 @@ function showFinal(){
     return;
   }
 
-  document.getElementById('questionsSection').style.display='none';
-  document.getElementById('finalMessage').style.display='block';
+  fadeOut(document.getElementById('questionsSection'));
+  fadeIn(document.getElementById('finalMessage'));
 }
 </script>
 
