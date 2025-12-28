@@ -11,13 +11,16 @@ body {
   color: #333;
   text-align: center;
   padding: 20px;
+  overflow-x:hidden;
 }
 .container {
   max-width: 700px;
   margin: 0 auto;
-  background: #fff0f6;
+  background: rgba(255,240,246,0.95);
   padding: 20px;
   border-radius: 15px;
+  position: relative;
+  z-index: 1;
 }
 h1 { color: #ff3366; }
 button {
@@ -40,10 +43,19 @@ p { line-height:1.6; margin-bottom:12px; opacity:0; transition: opacity 1s ease-
 p.visible { opacity:1; }
 strong.nick { color:#ff3366; font-weight:600; }
 label { display:block; margin-bottom:8px; cursor:pointer; }
-canvas#confetti { position: fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:9999; }
+canvas#balloons, canvas#confetti {
+  position: fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  pointer-events:none;
+  z-index:0;
+}
 </style>
 </head>
 <body>
+
+<canvas id="balloons"></canvas>
+<canvas id="confetti"></canvas>
 
 <div class="container">
 
@@ -54,7 +66,7 @@ canvas#confetti { position: fixed; top:0; left:0; width:100%; height:100%; point
 <button onclick="nextSection('passwordSection')">Read Letter 💌</button>
 </section>
 
-<!-- 2. Password Section for Letter -->
+<!-- 2. Password Section -->
 <section id="passwordSection">
 <h1>Enter Password to Read the Letter 💖</h1>
 <p>Please enter the password to unlock your special letter.</p>
@@ -131,7 +143,6 @@ function nextSection(id){
   const section = document.getElementById(id);
   section.style.display = 'block';
 
-  // Animate paragraphs in letter
   if(id==='letter'){
     const paragraphs = section.querySelectorAll('p');
     paragraphs.forEach((p,i) => {
@@ -139,7 +150,6 @@ function nextSection(id){
     });
   }
 
-  // Start confetti on final section
   if(id==='final'){
     startConfetti();
   }
@@ -167,7 +177,7 @@ function submitAnswers(){
   nextSection('final');
 }
 
-// Simple confetti effect
+// Confetti effect
 function startConfetti(){
   const canvas = document.getElementById('confetti');
   const ctx = canvas.getContext('2d');
@@ -175,7 +185,7 @@ function startConfetti(){
   canvas.height = window.innerHeight;
 
   const pieces = [];
-  for(let i=0;i<150;i++){
+  for(let i=0;i<200;i++){
     pieces.push({
       x: Math.random()*canvas.width,
       y: Math.random()*canvas.height,
@@ -206,6 +216,45 @@ function startConfetti(){
   }
   draw();
 }
+
+// Balloons
+const canvasB = document.getElementById('balloons');
+const ctxB = canvasB.getContext('2d');
+canvasB.width = window.innerWidth;
+canvasB.height = window.innerHeight;
+
+const balloons = [];
+const colors = ['#ff3366','#ff6699','#ff99cc','#ffb3d9','#ff80bf'];
+
+for(let i=0;i<20;i++){
+  balloons.push({
+    x: Math.random()*canvasB.width,
+    y: canvasB.height + Math.random()*200,
+    r: 20+Math.random()*15,
+    color: colors[Math.floor(Math.random()*colors.length)],
+    speed: 0.5 + Math.random()*1
+  });
+}
+
+function drawBalloons(){
+  ctxB.clearRect(0,0,canvasB.width,canvasB.height);
+  balloons.forEach(b=>{
+    ctxB.beginPath();
+    ctxB.fillStyle = b.color;
+    ctxB.ellipse(b.x, b.y, b.r*0.6, b.r, 0, 0, 2*Math.PI);
+    ctxB.fill();
+    ctxB.beginPath();
+    ctxB.moveTo(b.x, b.y+b.r);
+    ctxB.lineTo(b.x, b.y+b.r+20);
+    ctxB.strokeStyle = b.color;
+    ctxB.lineWidth=2;
+    ctxB.stroke();
+    b.y -= b.speed;
+    if(b.y < -50) b.y = canvasB.height + 50;
+  });
+  requestAnimationFrame(drawBalloons);
+}
+drawBalloons();
 </script>
 
 </body>
