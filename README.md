@@ -33,6 +33,7 @@ section { display: none; text-align:left; }
 input[type="password"] { padding:8px; border-radius:5px; border:1px solid #ccc; width:200px; margin-top:10px;}
 p { line-height:1.6; margin-bottom:12px; }
 strong.nick { color:#ff3366; font-weight:600; }
+label { display:block; margin-bottom:8px; cursor:pointer; }
 </style>
 </head>
 <body>
@@ -94,10 +95,10 @@ Aashay</p>
 <label><input type="radio" name="q1" value="First Hug"> First Hug</label>
 <label><input type="radio" name="q1" value="Fun School Memories"> Fun School Memories</label>
 
-<p>2. Which nickname of mine do you love the most?</p>
-<label><input type="radio" name="q2" value="Aashay"> Aashay</label>
-<label><input type="radio" name="q2" value="Partner"> Partner</label>
-<label><input type="radio" name="q2" value="Soul"> Soul</label>
+<p>2. Which is your favorite nickname?</p>
+<label><input type="radio" name="q2" value="sakhi"> sakhi</label>
+<label><input type="radio" name="q2" value="raanisaheb"> raanisaheb</label>
+<label><input type="radio" name="q2" value="mau"> mau</label>
 
 <p>3. What would you like us to do together this year?</p>
 <label><input type="radio" name="q3" value="Travel"> Travel</label>
