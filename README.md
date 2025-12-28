@@ -30,35 +30,22 @@ p {
   line-height:1.6;
 }
 strong.nick { color:#ff3366; font-weight:600; }
-
-.section {
-  display:none;
-  transition: opacity 0.7s ease;
-}
-
-.section.active {
-  display:block;
-  opacity:1;
-}
-
-.questions label { display:block; margin-bottom:8px; }
 button { padding:10px 18px; border-radius:8px; border:none; background-color:#ff4d88; color:white; cursor:pointer; margin-top:15px; font-size:16px; }
-.final-message { display:none; margin-top:20px; background:#fff0f6; padding:20px; border-radius:15px; text-align:center; }
 </style>
 </head>
 <body>
 
-<div class="container">
+<div class="container" id="mainContainer">
 
-<!-- Small Birthday Message -->
-<div class="section active" id="introSection">
+<!-- 1. Small Birthday Message -->
+<div id="introSection">
 <h1>Happy 17th Birthday, Snehal! 💖</h1>
 <p>Dear Snehal, wishing you a day filled with love, laughter, and all the happiness in the world. You are my sakhi, rasmalai, ladoo, dudu, raanisaheb, and my most precious person. 💖</p>
 <button onclick="showLetter()">Read Letter 💌</button>
 </div>
 
-<!-- Full Letter -->
-<div class="section" id="letterSection">
+<!-- 2. Full Letter -->
+<div id="letterSection" style="display:none;">
 <p><strong>Snehal,</strong></p>
 <p>Today is not just any day… it’s the day you turn 17, the day the world was blessed with <em>you</em>. I feel so lucky that I’ve known you since 6th standard — all the laughter, all the small moments, all the memories we’ve created together… I wouldn’t trade any of them for anything.</p>
 <p>I still remember that day in <strong>10th grade</strong>, your birthday, when I first held your hand on the bus while returning home. That tiny moment felt like the world had paused for <strong>uss</strong>, and it’s etched in my heart forever. And the <strong>first hug on 16th September 2024</strong>… I’ll never forget how perfect that felt.</p>
@@ -73,8 +60,8 @@ button { padding:10px 18px; border-radius:8px; border:none; background-color:#ff
 <button onclick="showQuestions()">Next ➡️</button>
 </div>
 
-<!-- Questions Section -->
-<div class="section" id="questionsSection">
+<!-- 3. Questions -->
+<div id="questionsSection" style="display:none;">
 <p>Answer these questions before the final birthday message:</p>
 
 <p>1. What do you wish for your 17th year?</p>
@@ -95,8 +82,8 @@ button { padding:10px 18px; border-radius:8px; border:none; background-color:#ff
 <button onclick="showFinal()">Submit Answers</button>
 </div>
 
-<!-- Final Message -->
-<div class="final-message" id="finalMessage">
+<!-- 4. Final Message -->
+<div id="finalMessage" style="display:none;">
 <h2>🎉 Happy 17th Birthday, Snehal 💖</h2>
 <p>May this year be gentle, joyful, and full of love. You deserve the world and more.</p>
 </div>
@@ -105,15 +92,13 @@ button { padding:10px 18px; border-radius:8px; border:none; background-color:#ff
 
 <script>
 function showLetter(){
-  document.getElementById('introSection').classList.remove('active');
-  document.getElementById('letterSection').classList.add('active');
+  document.getElementById('introSection').style.display='none';
+  document.getElementById('letterSection').style.display='block';
 }
-
 function showQuestions(){
-  document.getElementById('letterSection').classList.remove('active');
-  document.getElementById('questionsSection').classList.add('active');
+  document.getElementById('letterSection').style.display='none';
+  document.getElementById('questionsSection').style.display='block';
 }
-
 function showFinal(){
   const q1 = document.querySelector('input[name="q1"]:checked');
   const q2 = document.querySelector('input[name="q2"]:checked');
@@ -124,7 +109,7 @@ function showFinal(){
     return;
   }
 
-  document.getElementById('questionsSection').classList.remove('active');
+  document.getElementById('questionsSection').style.display='none';
   document.getElementById('finalMessage').style.display='block';
 }
 </script>
