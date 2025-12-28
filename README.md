@@ -36,7 +36,7 @@ strong.nick { color:#ff3366; font-weight:600; }
 .section {
   display:none;
   opacity:0;
-  transition: opacity 1s ease;
+  transition: opacity 0.7s ease;
   position: absolute;
   top:0;
   left:0;
@@ -59,16 +59,14 @@ button { padding:10px 18px; border-radius:8px; border:none; background-color:#ff
 
 <div class="container">
 
-<!-- Intro Section -->
+<!-- Small Birthday Message -->
 <div class="section active" id="introSection">
 <h1>Happy 17th Birthday, Snehal! 💖</h1>
-<p>Dear Snehal,</p>
-<p>Today is a very special day — the day a beautiful soul like you turns 17! May this year bring you endless laughter, joy, love, and unforgettable memories. You are my sakhi, my rasmalai, my ladoo, my dudu, my raanisaheb, and the most precious person in my life. 💖</p>
-<p>Every moment with you is magical, and I hope today is filled with all the love and happiness you deserve. Click below to read my special letter for you…</p>
+<p>Dear Snehal, wishing you a day filled with love, laughter, and all the happiness in the world. You are my sakhi, rasmalai, ladoo, dudu, raanisaheb, and my most precious person. 💖</p>
 <button onclick="showLetter()">Read Letter 💌</button>
 </div>
 
-<!-- Letter Section -->
+<!-- Full Letter -->
 <div class="section" id="letterSection">
 <p><strong>Snehal,</strong></p>
 <p>Today is not just any day… it’s the day you turn 17, the day the world was blessed with <em>you</em>. I feel so lucky that I’ve known you since 6th standard — all the laughter, all the small moments, all the memories we’ve created together… I wouldn’t trade any of them for anything.</p>
@@ -81,7 +79,7 @@ button { padding:10px 18px; border-radius:8px; border:none; background-color:#ff
 <p>Snehal, 17 is a beautiful age. It’s a time to dream bigger, laugh louder, love deeper, and embrace every part of yourself.</p>
 <p>Today, I want to remind you to <strong>take care of yourself</strong>, to cherish your happiness, and to know that I, <strong>Aashay</strong>, am always here. Every day with you is a gift, and I can’t wait for all the memories <strong>uss</strong> have yet to create.</p>
 <p>Happy 17th Birthday, my love. 💖</p>
-<button onclick="showQuestions()">Answer Questions 🎉</button>
+<button onclick="showQuestions()">Next ➡️</button>
 </div>
 
 <!-- Questions Section -->
