@@ -29,8 +29,10 @@ button {
   border-radius: 8px;
   cursor: pointer;
 }
-section { display: none; }
+section { display: none; text-align:left; }
 input[type="password"] { padding:8px; border-radius:5px; border:1px solid #ccc; width:200px; margin-top:10px;}
+p { line-height:1.6; margin-bottom:12px; }
+strong.nick { color:#ff3366; font-weight:600; }
 </style>
 </head>
 <body>
@@ -56,23 +58,43 @@ input[type="password"] { padding:8px; border-radius:5px; border:1px solid #ccc; 
 <!-- 3. Full Letter -->
 <section id="letter">
 <p><strong>Snehal,</strong></p>
-<p>Today is your 17th birthday! I feel so lucky knowing you since 6th standard — all the laughter, moments, and memories we've created together are priceless.</p>
-<p>I remember holding your hand for the first time on your birthday in 10th grade. And the first hug on 16th September 2024 — unforgettable.</p>
-<p>Since 25th February 2024, we've shared so many memories. My sakhi, rasmalai, ladoo, dudu, raanisaheb — you are my partner, my soul, my everything.</p>
-<p>Take care of yourself and know that I, Aashay, am always here. Happy 17th Birthday, my love 💖</p>
+
+<p>Today is not just any day… it’s the day you turn 17, the day the world was blessed with you. I feel so lucky that I’ve known you since 6th standard — all the laughter, all the small moments, all the memories we’ve created together… I wouldn’t trade any of them for anything.</p>
+
+<p>I still remember that day in 10th grade, your birthday, when I first held your hand on the bus while returning home. That tiny moment felt like the world had paused for uss, and it’s etched in my heart forever. And the first hug on 16th September 2024… I’ll never forget how perfect that felt. Each of these moments made me realize how truly special you are.</p>
+
+<p>Since 25th February 2024, we’ve been creating countless memories together — laughter, silly jokes, quiet talks, teasing each other, sharing dreams, and supporting one another. My sakhi, you’ve been my constant companion, my comfort, and the person who understands me like no one else. Uss journey with you has been the most beautiful adventure.</p>
+
+<p>My rasmalai, every time I see your smile, it feels like sunlight breaking through the clouds. You light up every space you’re in, and every moment with you becomes a memory I want to hold forever. I love how naturally we can laugh together, how we can be goofy, serious, and romantic all at once.</p>
+
+<p>My ladoo, your kindness, patience, and strength inspire me every day. You have this magical ability to make the world feel soft and safe, and I hope you always remember to treat yourself with the same love and care that you give to everyone else.</p>
+
+<p>My dudu, being with you has taught me so much about love, friendship, and trust. You are my partner in every sense — the one who stands by me, who celebrates my highs and comforts me during lows, who makes ordinary days extraordinary.</p>
+
+<p>And my raanisaheb, you are my queen in every little way — ruling my heart completely. Every memory we’ve made, every moment we’ve shared, and every laugh, hug, and hand-hold is engraved in my soul. I feel so blessed to have you as my girlfriend, my best friend, my soulmate — my everything.</p>
+
+<p>Snehal, 17 is a beautiful age. It’s a time to dream bigger, laugh louder, love deeper, and embrace every part of yourself. I hope you never forget your worth, your strength, and your beauty — not just outside, but inside, where your soul shines brighter than anyone I’ve ever known.</p>
+
+<p>Today, I want to remind you to take care of yourself, to cherish your happiness, and to know that I, Aashay, am always here — not just as your boyfriend, but as your friend, your partner, your soul. Every day with you is a gift, and I can’t wait for all the memories uss have yet to create.</p>
+
+<p>Happy 17th Birthday, my love. 💖</p>
+
+<p>With all my heart,<br>
+Aashay</p>
+
 <button onclick="nextSection('questions')">Next ➡️</button>
 </section>
 
 <!-- 4. Personal Questions -->
 <section id="questions">
-<p>Answer these questions before the final birthday message:</p>
+<p>Answer these personal questions to unlock your final birthday message:</p>
 
-<p>1. What is your favorite memory of us together?</p>
+<p>1. Which moment with me makes you smile the most?</p>
 <label><input type="radio" name="q1" value="First Hand Hold"> First Hand Hold</label>
 <label><input type="radio" name="q1" value="First Hug"> First Hug</label>
-<label><input type="radio" name="q1" value="Bus or School Memories"> Bus or School Memories</label>
+<label><input type="radio" name="q1" value="Fun School Memories"> Fun School Memories</label>
 
-<p>2. Which nickname of mine makes you smile the most?</p>
+<p>2. Which nickname of mine do you love the most?</p>
 <label><input type="radio" name="q2" value="Aashay"> Aashay</label>
 <label><input type="radio" name="q2" value="Partner"> Partner</label>
 <label><input type="radio" name="q2" value="Soul"> Soul</label>
