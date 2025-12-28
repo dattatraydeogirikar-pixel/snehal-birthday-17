@@ -20,8 +20,6 @@ body {
   border-radius:20px;
   padding:25px;
   box-shadow:0 8px 25px rgba(0,0,0,0.15);
-  position: relative;
-  overflow: hidden;
 }
 h1 {
   color:#ff4d88;
@@ -35,14 +33,7 @@ strong.nick { color:#ff3366; font-weight:600; }
 
 .section {
   display:none;
-  opacity:0;
   transition: opacity 0.7s ease;
-  position: absolute;
-  top:0;
-  left:0;
-  width:100%;
-  padding:20px;
-  box-sizing:border-box;
 }
 
 .section.active {
@@ -52,7 +43,7 @@ strong.nick { color:#ff3366; font-weight:600; }
 
 .questions label { display:block; margin-bottom:8px; }
 button { padding:10px 18px; border-radius:8px; border:none; background-color:#ff4d88; color:white; cursor:pointer; margin-top:15px; font-size:16px; }
-.final-message { display:none; margin-top:20px; background:#fff0f6; padding:20px; border-radius:15px; text-align:center; position:relative; }
+.final-message { display:none; margin-top:20px; background:#fff0f6; padding:20px; border-radius:15px; text-align:center; }
 </style>
 </head>
 <body>
@@ -113,24 +104,14 @@ button { padding:10px 18px; border-radius:8px; border:none; background-color:#ff
 </div>
 
 <script>
-function fadeOut(element){
-  element.style.opacity = 0;
-  setTimeout(()=>{ element.style.display='none'; }, 500);
-}
-
-function fadeIn(element){
-  element.style.display='block';
-  setTimeout(()=>{ element.style.opacity = 1; }, 50);
-}
-
 function showLetter(){
-  fadeOut(document.getElementById('introSection'));
-  fadeIn(document.getElementById('letterSection'));
+  document.getElementById('introSection').classList.remove('active');
+  document.getElementById('letterSection').classList.add('active');
 }
 
 function showQuestions(){
-  fadeOut(document.getElementById('letterSection'));
-  fadeIn(document.getElementById('questionsSection'));
+  document.getElementById('letterSection').classList.remove('active');
+  document.getElementById('questionsSection').classList.add('active');
 }
 
 function showFinal(){
@@ -143,8 +124,8 @@ function showFinal(){
     return;
   }
 
-  fadeOut(document.getElementById('questionsSection'));
-  fadeIn(document.getElementById('finalMessage'));
+  document.getElementById('questionsSection').classList.remove('active');
+  document.getElementById('finalMessage').style.display='block';
 }
 </script>
 
