@@ -12,7 +12,6 @@ body{
   background:#ffe6f0;
   overflow-x:hidden;
 }
-
 .container{
   max-width:750px;
   margin:40px auto;
@@ -22,7 +21,6 @@ body{
   position:relative;
   z-index:2;
 }
-
 h1{ color:#ff3366; text-align:center; }
 
 button{
@@ -52,7 +50,7 @@ input[type="password"]{
 /* LETTER ANIMATION */
 #letter p{
   opacity:0;
-  transform:translateY(10px);
+  transform:translateY(12px);
   transition:1s;
 }
 #letter p.visible{
@@ -60,7 +58,7 @@ input[type="password"]{
   transform:translateY(0);
 }
 
-/* QUESTIONS MUST BE VISIBLE */
+/* QUESTIONS VISIBILITY */
 #questions p,
 #questions label{
   opacity:1;
@@ -80,7 +78,7 @@ label{
   font-weight:bold;
 }
 
-/* BALLOONS + HEARTS */
+/* BACKGROUND */
 canvas{
   position:fixed;
   top:0;
@@ -103,8 +101,7 @@ canvas{
 <!-- INTRO -->
 <section id="intro" style="display:block;">
 <h1>Happy 17th Birthday Snehal 💖</h1>
-<p style="opacity:1;">Today is all about you — your smile, your heart, your soul.  
-This little journey is made just for you 🌸</p>
+<p style="opacity:1;">This little journey is made only for you 🌸</p>
 <button onclick="go('password')">Read Letter 💌</button>
 </section>
 
@@ -118,25 +115,30 @@ This little journey is made just for you 🌸</p>
 
 <!-- LETTER -->
 <section id="letter">
-<p>Snehal,</p>
 
-<p>Today is not just any day… it’s the day you turn 17, the day the world was blessed with you. I feel so lucky that I’ve known you since 6th standard.</p>
+<p><strong>Snehal,</strong></p>
 
-<p>I still remember that 10th standard bus moment — holding your hand on your birthday. That pause… that feeling… uss moment changed everything.</p>
+<p>Today is not just any day… it’s the day you turn 17, the day the world was blessed with you. I feel so lucky that I’ve known you since 6th standard — all the laughter, all the small moments, all the memories we’ve created together… I wouldn’t trade any of them for anything.</p>
 
-<p>Then came the first hug on 16th September 2024 — pure warmth, comfort, and love.</p>
+<p>I still remember that day in 10th grade, your birthday, when I first held your hand on the bus while returning home. That tiny moment felt like the world had paused for uss, and it’s etched in my heart forever. And the first hug on 16th September 2024… I’ll never forget how perfect that felt. Each of these moments made me realize how truly special you are.</p>
 
-<p>Since 25th February 2024, uss have created countless memories. My sakhi, you’ve been my peace, my laughter, my strength.</p>
+<p>Since 25th February 2024, we’ve been creating countless memories together — laughter, silly jokes, quiet talks, teasing each other, sharing dreams, and supporting one another. My sakhi, you’ve been my constant companion, my comfort, and the person who understands me like no one else. Uss journey with you has been the most beautiful adventure.</p>
 
-<p>My rasmalai, ladoo, dudu — you make life sweeter just by being in it.</p>
+<p>My rasmalai, every time I see your smile, it feels like sunlight breaking through the clouds. You light up every space you’re in, and every moment with you becomes a memory I want to hold forever. I love how naturally we can laugh together, how we can be goofy, serious, and romantic all at once.</p>
 
-<p>My raanisaheb, you rule my heart effortlessly.</p>
+<p>My ladoo, your kindness, patience, and strength inspire me every day. You have this magical ability to make the world feel soft and safe, and I hope you always remember to treat yourself with the same love and care that you give to everyone else.</p>
 
-<p>Take care of yourself always. Remember, Aashay is always here — your partner, your best friend, your soul.</p>
+<p>My dudu, being with you has taught me so much about love, friendship, and trust. You are my partner in every sense — the one who stands by me, who celebrates my highs and comforts me during lows, who makes ordinary days extraordinary.</p>
 
-<p>Happy 17th Birthday 💖</p>
+<p>And my raanisaheb, you are my queen in every little way — ruling my heart completely. Every memory we’ve made, every moment we’ve shared, and every laugh, hug, and hand-hold is engraved in my soul. I feel so blessed to have you as my girlfriend, my best friend, my soulmate — my everything.</p>
 
-<p>— Aashay</p>
+<p>Snehal, 17 is a beautiful age. It’s a time to dream bigger, laugh louder, love deeper, and embrace every part of yourself. I hope you never forget your worth, your strength, and your beauty — not just outside, but inside, where your soul shines brighter than anyone I’ve ever known.</p>
+
+<p>Today, I want to remind you to take care of yourself, to cherish your happiness, and to know that I, Aashay, am always here — not just as your boyfriend, but as your friend, your partner, your soul. Every day with you is a gift, and I can’t wait for all the memories uss have yet to create.</p>
+
+<p><strong>Happy 17th Birthday, my love. 💖</strong></p>
+
+<p>With all my heart,<br><strong>Aashay</strong></p>
 
 <button onclick="go('questions')">Next ➡️</button>
 </section>
@@ -151,9 +153,9 @@ This little journey is made just for you 🌸</p>
 <label><input type="radio" name="q1"> School memories</label>
 
 <p>2. Which is your favorite nickname?</p>
-<label><input type="radio" name="q2" onclick="nickname('sakhi')"> sakhi</label>
-<label><input type="radio" name="q2" onclick="nickname('raanisaheb')"> raanisaheb</label>
-<label><input type="radio" name="q2" onclick="nickname('mau')"> mau</label>
+<label><input type="radio" name="q2" onclick="nick('sakhi')"> sakhi</label>
+<label><input type="radio" name="q2" onclick="nick('raanisaheb')"> raanisaheb</label>
+<label><input type="radio" name="q2" onclick="nick('mau')"> mau</label>
 
 <div class="nickname-msg" id="nickmsg"></div>
 
@@ -168,7 +170,7 @@ This little journey is made just for you 🌸</p>
 <!-- FINAL -->
 <section id="final">
 <h1>🎉 Happy Birthday Snehal 💖</h1>
-<p style="opacity:1;">You are loved more than words can ever say 🌸</p>
+<p style="opacity:1;">You are loved beyond words 🌸</p>
 </section>
 
 </div>
@@ -193,13 +195,13 @@ function checkPass(){
  } else alert("Wrong password 💔");
 }
 
-function nickname(name){
- const map={
+function nick(n){
+ const m={
   sakhi:"My forever sakhi 💖",
   raanisaheb:"My queen 👑",
-  mau:"My cutest mau 🐥"
+  mau:"My cutest mau 🐣"
  };
- document.getElementById("nickmsg").innerText=map[name];
+ document.getElementById("nickmsg").innerText=m[n];
 }
 
 function finish(){
@@ -228,18 +230,18 @@ function party(){
  d();
 }
 
-/* BALLOONS + HEARTS */
+/* BALLOONS */
 const bg=document.getElementById("bg");
 const g=bg.getContext("2d");
 bg.width=innerWidth; bg.height=innerHeight;
 let b=[];
-for(let i=0;i<25;i++)b.push({x:Math.random()*bg.width,y:bg.height+Math.random()*500,s:0.5+Math.random()});
+for(let i=0;i<25;i++)b.push({x:Math.random()*bg.width,y:bg.height+Math.random()*400,s:0.6+Math.random()});
 function drawBG(){
  g.clearRect(0,0,bg.width,bg.height);
  b.forEach(o=>{
   g.fillStyle="#ff6699";
   g.beginPath();
-  g.ellipse(o.x,o.y,15,22,0,0,Math.PI*2);
+  g.ellipse(o.x,o.y,14,20,0,0,Math.PI*2);
   g.fill();
   o.y-=o.s;
   if(o.y<-50)o.y=bg.height+50;
