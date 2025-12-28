@@ -37,78 +37,77 @@ input[type="password"] { padding:8px; border-radius:5px; border:1px solid #ccc; 
 
 <div class="container">
 
-<!-- 0. Password Section -->
-<section id="passwordSection" style="display:block;">
-<h1>Enter Password 💖</h1>
-<p>Please enter the password to unlock your birthday surprise.</p>
-<input type="password" id="passwordInput" placeholder="Enter password">
-<br>
-<button onclick="checkPassword()">Unlock 🎉</button>
-</section>
-
 <!-- 1. Small Birthday Message -->
-<section id="intro">
+<section id="intro" style="display:block;">
 <h1>Happy 17th Birthday, Snehal! 💖</h1>
 <p>Dear Snehal, wishing you a day filled with love, laughter, and all the happiness in the world. You are my sakhi, rasmalai, ladoo, dudu, raanisaheb, and my most precious person. 💖</p>
-<button onclick="nextSection('letter')">Read Letter 💌</button>
+<button onclick="nextSection('passwordSection')">Read Letter 💌</button>
 </section>
 
-<!-- 2. Full Letter -->
+<!-- 2. Password Section for Letter -->
+<section id="passwordSection">
+<h1>Enter Password to Read the Letter 💖</h1>
+<p>Please enter the password to unlock your special letter.</p>
+<input type="password" id="letterPasswordInput" placeholder="Enter password">
+<br>
+<button onclick="checkLetterPassword()">Unlock Letter 🎉</button>
+</section>
+
+<!-- 3. Full Letter -->
 <section id="letter">
 <p><strong>Snehal,</strong></p>
-<p>Today is the day you turn 17, the day the world was blessed with <em>you</em>. I feel so lucky knowing you since 6th standard — all the laughter, moments, and memories we've created together.</p>
-<p>I remember holding your hand for the first time in 10th grade, your birthday. That tiny moment felt magical. And the first hug on 16th September 2024 — unforgettable.</p>
-<p>Since 25th February 2024, we've been making countless memories. My sakhi, rasmalai, ladoo, dudu, raanisaheb — you are my partner, my soul, my everything.</p>
+<p>Today is your 17th birthday! I feel so lucky knowing you since 6th standard — all the laughter, moments, and memories we've created together are priceless.</p>
+<p>I remember holding your hand for the first time on your birthday in 10th grade. And the first hug on 16th September 2024 — unforgettable.</p>
+<p>Since 25th February 2024, we've shared so many memories. My sakhi, rasmalai, ladoo, dudu, raanisaheb — you are my partner, my soul, my everything.</p>
 <p>Take care of yourself and know that I, Aashay, am always here. Happy 17th Birthday, my love 💖</p>
 <button onclick="nextSection('questions')">Next ➡️</button>
 </section>
 
-<!-- 3. Personal Questions -->
+<!-- 4. Personal Questions -->
 <section id="questions">
 <p>Answer these questions before the final birthday message:</p>
 
-<p>1. Which moment with me is your favorite so far?</p>
+<p>1. What is your favorite memory of us together?</p>
 <label><input type="radio" name="q1" value="First Hand Hold"> First Hand Hold</label>
 <label><input type="radio" name="q1" value="First Hug"> First Hug</label>
-<label><input type="radio" name="q1" value="Funny Memory Together"> Funny Memory Together</label>
+<label><input type="radio" name="q1" value="Bus or School Memories"> Bus or School Memories</label>
 
 <p>2. Which nickname of mine makes you smile the most?</p>
 <label><input type="radio" name="q2" value="Aashay"> Aashay</label>
 <label><input type="radio" name="q2" value="Partner"> Partner</label>
 <label><input type="radio" name="q2" value="Soul"> Soul</label>
 
-<p>3. What do you want us to do together this year?</p>
+<p>3. What would you like us to do together this year?</p>
 <label><input type="radio" name="q3" value="Travel"> Travel</label>
-<label><input type="radio" name="q3" value="Study & Memories"> Study & Memories</label>
 <label><input type="radio" name="q3" value="Fun Adventures"> Fun Adventures</label>
+<label><input type="radio" name="q3" value="Make More Memories"> Make More Memories</label>
 
 <button onclick="submitAnswers()">Submit Answers</button>
 </section>
 
-<!-- 4. Final Message -->
+<!-- 5. Final Message -->
 <section id="final">
 <h1>🎉 Happy 17th Birthday, Snehal 💖</h1>
-<p>May this year be full of love, joy, and unforgettable memories. You deserve the world and more.</p>
+<p>May this year be full of love, joy, and unforgettable memories. You deserve the world and more. 💖</p>
 </section>
 
 </div>
 
 <script>
-const password = "snehashay1303"; // Set your password here
-
-function checkPassword() {
-  const input = document.getElementById('passwordInput').value;
-  if(input === password){
-    document.getElementById('passwordSection').style.display = 'none';
-    document.getElementById('intro').style.display = 'block';
-  } else {
-    alert("Incorrect password! Please try again.");
-  }
-}
+const letterPassword = "snehashay1303"; // Password for letter
 
 function nextSection(id){
   document.querySelectorAll('section').forEach(s => s.style.display='none');
   document.getElementById(id).style.display='block';
+}
+
+function checkLetterPassword(){
+  const input = document.getElementById('letterPasswordInput').value;
+  if(input === letterPassword){
+    nextSection('letter');
+  } else {
+    alert("Incorrect password! Please try again.");
+  }
 }
 
 function submitAnswers(){
