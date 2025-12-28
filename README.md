@@ -14,7 +14,7 @@ body {
   padding:20px;
 }
 .container {
-  max-width:650px;
+  max-width:700px;
   margin:0 auto;
   background:#fff0f6;
   border-radius:20px;
@@ -25,45 +25,37 @@ h1 {
   color:#ff4d88;
   margin-bottom:20px;
 }
-.countdown {
-  display:flex;
-  justify-content:space-between;
-  margin-bottom:20px;
+p {
+  margin:12px 0;
+  line-height:1.6;
+  opacity:0;
+  transform:translateY(15px);
+  animation:fadeIn 1s forwards;
 }
-.box {
-  background:#ffe6f0;
-  border-radius:12px;
-  padding:10px;
-  width:22%;
-}
-.number {
-  font-size:24px;
-  font-weight:600;
-  color:#ff3366;
-}
-.label { font-size:12px; color:#555; }
-p { margin:12px 0; line-height:1.6; opacity:0; transform:translateY(15px); animation:fadeIn 1s forwards; }
 strong.nick { color:#ff3366; font-weight:600; }
 @keyframes fadeIn { to { opacity:1; transform:translateY(0); } }
-.questions { margin-top:20px; }
-input[type="text"] { padding:8px 12px; border-radius:8px; border:1px solid #ccc; width:80%; margin-bottom:10px; }
-button { padding:8px 16px; border-radius:8px; border:none; background-color:#ff4d88; color:white; cursor:pointer; }
-.final-message { display:none; margin-top:20px; background:#fff0f6; padding:20px; border-radius:15px; }
+.section { display:none; margin-top:20px; text-align:left; }
+.questions { margin-top:20px; text-align:left; }
+.questions label { display:block; margin-bottom:8px; }
+button { padding:8px 16px; border-radius:8px; border:none; background-color:#ff4d88; color:white; cursor:pointer; margin-top:10px; }
+.final-message { display:none; margin-top:20px; background:#fff0f6; padding:20px; border-radius:15px; text-align:center; }
 </style>
 </head>
 <body>
 
 <div class="container">
-<h1>Snehal 💖</h1>
 
-<div class="countdown">
-  <div class="box"><div class="number" id="days">0</div><div class="label">Days</div></div>
-  <div class="box"><div class="number" id="hours">0</div><div class="label">Hours</div></div>
-  <div class="box"><div class="number" id="minutes">0</div><div class="label">Minutes</div></div>
-  <div class="box"><div class="number" id="seconds">0</div><div class="label">Seconds</div></div>
+<!-- First page beautiful message -->
+<div class="section" id="introSection" style="display:block;">
+<h1>Happy 17th Birthday, Snehal! 💖</h1>
+<p>Dear Snehal,</p>
+<p>Today is a very special day — the day a beautiful soul like you turns 17! May this year bring you endless laughter, joy, love, and unforgettable memories. You are my sakhi, my rasmalai, my ladoo, my dudu, my raanisaheb, and the most precious person in my life. 💖</p>
+<p>Every moment with you is magical, and I hope today is filled with all the love and happiness you deserve. Click below to read my special letter for you…</p>
+<button onclick="showLetter()">Read Letter 💌</button>
 </div>
 
-<div class="letter">
+<!-- Letter section -->
+<div class="section" id="letterSection">
 <p><strong>Snehal,</strong></p>
 <p>Today is not just any day… it’s the day you turn 17, the day the world was blessed with <em>you</em>. I feel so lucky that I’ve known you since 6th standard — all the laughter, all the small moments, all the memories we’ve created together… I wouldn’t trade any of them for anything.</p>
 <p>I still remember that day in <strong>10th grade</strong>, your birthday, when I first held your hand on the bus while returning home. That tiny moment felt like the world had paused for <strong>uss</strong>, and it’s etched in my heart forever. And the <strong>first hug on 16th September 2024</strong>… I’ll never forget how perfect that felt.</p>
@@ -76,45 +68,61 @@ button { padding:8px 16px; border-radius:8px; border:none; background-color:#ff4
 <p>Today, I want to remind you to <strong>take care of yourself</strong>, to cherish your happiness, and to know that I, <strong>Aashay</strong>, am always here. Every day with you is a gift, and I can’t wait for all the memories <strong>uss</strong> have yet to create.</p>
 <p>Happy 17th Birthday, my love. 💖</p>
 <p>With all my heart,<br><strong>Aashay</strong></p>
+<button onclick="showQuestions()">Answer Questions 🎉</button>
 </div>
 
-<div class="questions">
-<p>Answer these questions before the final message:</p>
+<!-- Questions section -->
+<div class="section" id="questionsSection" class="questions">
+<p>Answer these questions before the final birthday message:</p>
+
 <p>1. What do you wish for your 17th year?</p>
-<input type="text" id="q1"><br>
+<label><input type="radio" name="q1" value="Happiness"> Happiness</label>
+<label><input type="radio" name="q1" value="Success"> Success</label>
+<label><input type="radio" name="q1" value="Adventure"> Adventure</label>
+
 <p>2. One thing you want to protect this year?</p>
-<input type="text" id="q2"><br>
+<label><input type="radio" name="q2" value="Friendship"> Friendship</label>
+<label><input type="radio" name="q2" value="Love"> Love</label>
+<label><input type="radio" name="q2" value="Health"> Health</label>
+
 <p>3. What makes you feel happy and calm?</p>
-<input type="text" id="q3"><br>
+<label><input type="radio" name="q3" value="Music"> Music</label>
+<label><input type="radio" name="q3" value="Reading"> Reading</label>
+<label><input type="radio" name="q3" value="Nature"> Nature</label>
+
 <button onclick="showFinal()">Submit Answers</button>
 </div>
 
+<!-- Final message -->
 <div class="final-message" id="finalMessage">
 <h2>🎉 Happy 17th Birthday, Snehal 💖</h2>
 <p>May this year be gentle, joyful, and full of love. You deserve the world and more.</p>
 </div>
 
-<script>
-// Countdown
-const birthday = new Date(2026,0,3,0,0,0);
-function updateCountdown(){
-  const now = new Date();
-  const diff = birthday - now;
-  const days = Math.floor(diff/(1000*60*60*24));
-  const hours = Math.floor((diff/(1000*60*60))%24);
-  const minutes = Math.floor((diff/(1000*60))%60);
-  const seconds = Math.floor((diff/1000)%60);
-  document.getElementById('days').innerText = days>=0 ? days:0;
-  document.getElementById('hours').innerText = hours>=0 ? hours:0;
-  document.getElementById('minutes').innerText = minutes>=0 ? minutes:0;
-  document.getElementById('seconds').innerText = seconds>=0 ? seconds:0;
-}
-setInterval(updateCountdown,1000);
-updateCountdown();
+</div>
 
-// Show final message
+<script>
+function showLetter(){
+  document.getElementById('introSection').style.display='none';
+  document.getElementById('letterSection').style.display='block';
+}
+
+function showQuestions(){
+  document.getElementById('letterSection').style.display='none';
+  document.getElementById('questionsSection').style.display='block';
+}
+
 function showFinal(){
-  document.querySelector('.questions').style.display='none';
+  const q1 = document.querySelector('input[name="q1"]:checked');
+  const q2 = document.querySelector('input[name="q2"]:checked');
+  const q3 = document.querySelector('input[name="q3"]:checked');
+
+  if(!q1 || !q2 || !q3){
+    alert("Please answer all questions before submitting!");
+    return;
+  }
+
+  document.getElementById('questionsSection').style.display='none';
   document.getElementById('finalMessage').style.display='block';
 }
 </script>
