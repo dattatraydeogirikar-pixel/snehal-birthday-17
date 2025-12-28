@@ -28,12 +28,19 @@ button {
   border: none;
   border-radius: 8px;
   cursor: pointer;
+  transition: transform 0.2s, background 0.2s;
+}
+button:hover {
+  transform: scale(1.1);
+  background: #ff6699;
 }
 section { display: none; text-align:left; }
 input[type="password"] { padding:8px; border-radius:5px; border:1px solid #ccc; width:200px; margin-top:10px;}
-p { line-height:1.6; margin-bottom:12px; }
+p { line-height:1.6; margin-bottom:12px; opacity:0; transition: opacity 1s ease-in; }
+p.visible { opacity:1; }
 strong.nick { color:#ff3366; font-weight:600; }
 label { display:block; margin-bottom:8px; cursor:pointer; }
+canvas#confetti { position: fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:9999; }
 </style>
 </head>
 <body>
@@ -43,7 +50,7 @@ label { display:block; margin-bottom:8px; cursor:pointer; }
 <!-- 1. Small Birthday Message -->
 <section id="intro" style="display:block;">
 <h1>Happy 17th Birthday, Snehal! 💖</h1>
-<p>Dear Snehal, wishing you a day filled with love, laughter, and all the happiness in the world. You are my sakhi, rasmalai, ladoo, dudu, raanisaheb, and my most precious person. 💖</p>
+<p class="visible">Dear Snehal, wishing you a day filled with love, laughter, and all the happiness in the world. You are my sakhi, rasmalai, ladoo, dudu, raanisaheb, and my most precious person. 💖</p>
 <button onclick="nextSection('passwordSection')">Read Letter 💌</button>
 </section>
 
@@ -58,7 +65,7 @@ label { display:block; margin-bottom:8px; cursor:pointer; }
 
 <!-- 3. Full Letter -->
 <section id="letter">
-<p><strong>Snehal,</strong></p>
+<p>Snehal,</p>
 
 <p>Today is not just any day… it’s the day you turn 17, the day the world was blessed with you. I feel so lucky that I’ve known you since 6th standard — all the laughter, all the small moments, all the memories we’ve created together… I wouldn’t trade any of them for anything.</p>
 
@@ -80,8 +87,7 @@ label { display:block; margin-bottom:8px; cursor:pointer; }
 
 <p>Happy 17th Birthday, my love. 💖</p>
 
-<p>With all my heart,<br>
-Aashay</p>
+<p>With all my heart,<br>Aashay</p>
 
 <button onclick="nextSection('questions')">Next ➡️</button>
 </section>
@@ -112,6 +118,7 @@ Aashay</p>
 <section id="final">
 <h1>🎉 Happy 17th Birthday, Snehal 💖</h1>
 <p>May this year be full of love, joy, and unforgettable memories. You deserve the world and more. 💖</p>
+<canvas id="confetti"></canvas>
 </section>
 
 </div>
@@ -121,7 +128,21 @@ const letterPassword = "snehashay1303"; // Password for letter
 
 function nextSection(id){
   document.querySelectorAll('section').forEach(s => s.style.display='none');
-  document.getElementById(id).style.display='block';
+  const section = document.getElementById(id);
+  section.style.display = 'block';
+
+  // Animate paragraphs in letter
+  if(id==='letter'){
+    const paragraphs = section.querySelectorAll('p');
+    paragraphs.forEach((p,i) => {
+      setTimeout(() => p.classList.add('visible'), i*500);
+    });
+  }
+
+  // Start confetti on final section
+  if(id==='final'){
+    startConfetti();
+  }
 }
 
 function checkLetterPassword(){
@@ -144,6 +165,46 @@ function submitAnswers(){
   }
 
   nextSection('final');
+}
+
+// Simple confetti effect
+function startConfetti(){
+  const canvas = document.getElementById('confetti');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  const pieces = [];
+  for(let i=0;i<150;i++){
+    pieces.push({
+      x: Math.random()*canvas.width,
+      y: Math.random()*canvas.height,
+      r: Math.random()*6+4,
+      d: Math.random()*100,
+      color: `hsl(${Math.random()*360},100%,50%)`,
+      tilt: Math.random()*10-10,
+      tiltAngleIncrement: Math.random()*0.07+0.05,
+      tiltAngle:0
+    });
+  }
+
+  function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    pieces.forEach(p=>{
+      ctx.beginPath();
+      ctx.lineWidth = p.r/2;
+      ctx.strokeStyle = p.color;
+      ctx.moveTo(p.x+p.tilt+ p.r/4, p.y);
+      ctx.lineTo(p.x+p.tilt, p.y+p.tilt+p.r/4);
+      ctx.stroke();
+      p.tiltAngle += p.tiltAngleIncrement;
+      p.y += (Math.cos(p.d)+1+p.r/2)/2;
+      p.x += Math.sin(p.tiltAngle);
+      if(p.y>canvas.height){ p.y=0; p.x=Math.random()*canvas.width; }
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
 }
 </script>
 
